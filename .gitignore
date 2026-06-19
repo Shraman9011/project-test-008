@@ -1,5 +1,14 @@
-node_modules/
-dist/
+# Ignore all .env files
+.env*
+
+# Ignore Docker related files
+docker-compose.yml
+Dockerfile
+
+# Ignore IDE specific files
+.idea/
+.vscode/
+
+# Ignore OS specific files
 .DS_Store
-*.log
-.env
+Thumbs.db

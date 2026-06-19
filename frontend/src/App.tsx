@@ -1,13 +1,22 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import './App.css';
+
+function HomePage() {
+  return (
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <h1 className="text-4xl font-bold text-blue-600">Welcome to test oo8 Frontend!</h1>
+    </div>
+  );
+}
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="text-center p-8 bg-white shadow-lg rounded-lg">
-        <h1 className="text-4xl font-bold text-gray-800 mb-4">Welcome to test oo8</h1>
-        <p className="text-lg text-gray-600">Your frontend application is running!</p>
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+    </Router>
   );
 }
 

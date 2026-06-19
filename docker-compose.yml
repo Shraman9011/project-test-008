@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  app: # This service will run the frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173" # Vite dev server port
+    environment:
+      - NODE_ENV=development
+      - VITE_API_URL=http://localhost:8080 # Example for backend API if it existed
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    image: postgres:15
+    container_name: test-oo8-db
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-testoo8db}
+      POSTGRES_USER: ${POSTGRES_USER:-testoo8user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-testoo8password}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+volumes:
+  postgres_data:
+
+networks:
+  app-network:
+    driver: bridge
